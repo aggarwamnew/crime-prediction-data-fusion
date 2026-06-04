@@ -1,0 +1,41 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.egg-info/
+dist/
+build/
+.eggs/
+
+# Virtual environment
+venv/
+.venv/
+env/
+
+# Data (too large for git; see data/README.md for acquisition)
+data/raw/
+data/processed/
+data/external/
+*.parquet
+*.duckdb
+*.duckdb-wal
+*.duckdb-tmp
+*.csv
+!data/data_sources.md
+!data/data_quality_log.md
+!reports/figures/**/*.csv
+
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb_metadata/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
