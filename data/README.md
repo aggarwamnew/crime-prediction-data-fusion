@@ -169,6 +169,32 @@ bash scripts/download_santander_trips.sh
 This downloads approximately 40 million trip records from 799 docking stations.
 Files are saved to `data/raw/london/transport/santander_cycles/`.
 
+## Cross-City Data (Chicago and Vancouver)
+
+The Chicago and Vancouver replications automate their own downloads: each `01_download_crime.py` and `02_download_boundaries.py` (plus the per-layer scripts) pull directly from the public APIs into `data/raw/chicago/` and `data/raw/vancouver/`. No manual download is required. Full source URLs, dataset IDs, and the open-versus-gated analysis are in [`cross_city_feasibility.md`](cross_city_feasibility.md).
+
+**Chicago** (`notebooks/chicago/`):
+
+| Layer | Source | Access |
+|-------|--------|--------|
+| Crime | Chicago Data Portal `ijzp-q8t2` (Socrata API) | scripted |
+| Boundaries | US Census TIGER/Line 2020 tracts (Cook County) | scripted |
+| Deprivation | CDC/ATSDR Social Vulnerability Index 2022 | scripted |
+| Weather | NOAA GHCN-Daily (O'Hare `USW00094846`) | scripted |
+| Mental health | CDC PLACES (`MHLTH`, census tract) | scripted |
+| Transit | CTA 'L' station ridership + Divvy trips | scripted |
+
+**Vancouver** (`notebooks/vancouver/`):
+
+| Layer | Source | Access |
+|-------|--------|--------|
+| Crime | VPD GeoDASH open data (property crime; violent suppressed) | scripted |
+| Boundaries | Statistics Canada 2021 Dissemination Areas | scripted |
+| Deprivation | Canadian Index of Multiple Deprivation (CIMD) 2021 | scripted |
+| Weather | Environment and Climate Change Canada (YVR) | scripted |
+
+Two Chicago substitutions are documented in the code because the direct analogue is authentication-gated: CDC/ATSDR SVI is used in place of the login-gated Area Deprivation Index, and demographic counts come from the SVI release because the Census ACS API now requires a key.
+
 ## Data Licences
 
 | Source | Licence |

@@ -1,6 +1,6 @@
 # Experiment Index
 
-Complete index of all 34 experiments conducted in this study. Scripts are located in `notebooks/eda/` (01-32) and `notebooks/experimental/` (DL-01, DL-02).
+Complete index of experiments in this study. London scripts are in `notebooks/eda/` (01-32) and `notebooks/experimental/` (DL-01, DL-02); the cross-city replications are in `notebooks/chicago/` and `notebooks/vancouver/`.
 
 ## Execution Order
 
@@ -45,6 +45,46 @@ Scripts should be run sequentially. Scripts 01-02 prepare the data; script 03 es
 | 32 | `32_concentric_radius.py` | Concentric radius diagnostic | Double ceiling effect confirmed | - |
 | DL-01 | `experimental/01_lstm_baseline.py` | LSTM baseline (11 features) | R² = 0.9075 (RF wins by +0.035) | - |
 | DL-02 | `experimental/02_lstm_full_fusion.py` | LSTM full fusion (51 features) | R² = 0.9040 (fusion actually hurts LSTM) | - |
+
+## Chicago Replication (`notebooks/chicago/`)
+
+Same modelling logic as London (11 features, RF 200/depth-15/leaf-5/seed-42, last-6-months split), on 814 census tracts. Shared helpers: `_fusion.py` (fusion harness), `layers.py` (layer loaders). Detailed results in [`notebooks/chicago/RESULTS.md`](notebooks/chicago/RESULTS.md).
+
+| # | Script | Description | Key Finding |
+|---|--------|-------------|-------------|
+| 01 | `01_download_crime.py` | Crime pull (Chicago Data Portal, Socrata) | 776,933 incidents, 99.3% geocoded |
+| 02 | `02_download_boundaries.py` | Census tracts (TIGER 2020, Cook County) | 814 active tracts |
+| 03 | `03_baseline_model.py` | Baseline Random Forest | R² = 0.902 (rolling_mean_12 = 0.73) |
+| 04 | `04_svi_fusion.py` | Deprivation (CDC/ATSDR SVI) | Delta R² = +0.0005 |
+| 05 | `05_weather_fusion.py` | Weather (NOAA GHCN-Daily, O'Hare) | Delta R² = +0.0022 |
+| 06 | `06_poi_fusion.py` | POIs (OpenStreetMap / Overpass) | Delta R² = +0.0004 |
+| 07 | `07_mental_health_fusion.py` | Mental health (CDC PLACES) | Delta R² = +0.0001 |
+| 08 | `08_demographics_fusion.py` | Demographics (ACS via SVI counts) | Delta R² = -0.0002 |
+| 09 | `09_cta_fusion.py` | Transit (CTA 'L' station ridership) | +0.0018 (station tracts) |
+| 10 | `10_divvy_fusion.py` | Bike-share (Divvy trips) | Delta R² = +0.0002 |
+| 11 | `11_full_fusion.py` | Full fusion (contextual + SS) | Delta R² = +0.0021 (subadditive) |
+| 12 | `12_per_type.py` | Per-crime-type ablation | Weapons+Weather +0.092; Robbery+Transit +0.025 |
+
+## Vancouver Replication (`notebooks/vancouver/`)
+
+Same logic on Census dissemination areas. Property crime only at DA level (violent-offence coordinates suppressed under BC FIPPA); a 24-neighbourhood run includes all crime. Shared helper: `_fusion.py`.
+
+| # | Script | Description | Key Finding |
+|---|--------|-------------|-------------|
+| 01 | `01_download_crime.py` | Crime pull (VPD GeoDASH) | 919K records; violent crime coordinate-suppressed |
+| 02 | `02_download_boundaries.py` | Dissemination areas (StatCan 2021) | filtered to City of Vancouver |
+| 03 | `03_baseline_model.py` | Baseline Random Forest (property crime) | R² = 0.925 (461 DAs) |
+| 04 | `04_cimd_fusion.py` | Deprivation (CIMD) | Delta R² = -0.0001 |
+| 05 | `05_weather_fusion.py` | Weather (ECCC, YVR) | Delta R² = -0.0001 (mild climate) |
+| 06 | `06_poi_fusion.py` | POIs (OpenStreetMap / Overpass) | Delta R² = -0.0000 |
+| 07 | `07_neighbourhood_allcrime.py` | All-crime at 24 neighbourhoods (incl. violent) | R² = 0.971 |
+| 08 | `08_full_fusion.py` | Full fusion (contextual layers) | static layers negligible |
+
+## Cross-City Comparison
+
+| Script | Description |
+|--------|-------------|
+| `notebooks/cross_city_charts.py` | Generates the London/Chicago/Vancouver comparison figures in `reports/figures/cross_city/` |
 
 ## Notes
 
