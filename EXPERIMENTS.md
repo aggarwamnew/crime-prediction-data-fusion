@@ -46,6 +46,7 @@ Scripts should be run sequentially. Scripts 01-02 prepare the data; script 03 es
 | 33 | `33_bootstrap_ci.py` | Cluster-bootstrap 95% CIs for headline results | Aggregate lifts tiny but real; per-type robust | - |
 | 34 | `34_static_only_model.py` | Supplementary-only models (no crime history) | IMD alone R2 = 0.905 vs 0.935 with history | - |
 | 35 | `35_transport_join_audit.py` | Leaky vs corrected transport join audit | Weapons +0.1371 -> +0.003 (n.s.); only drugs keeps a small robust lift | - |
+| 36 | `36_uncertainty_decomposition.py` | Pre-fusion epistemic diagnostics vs realised gains | Rule-out valid, rule-in fails (rho ~ 0): gap size does not reveal gap source | - |
 | DL-01 | `experimental/01_lstm_baseline.py` | LSTM baseline (11 features) | R² = 0.9075 (RF wins by +0.035) | - |
 | DL-02 | `experimental/02_lstm_full_fusion.py` | LSTM full fusion (51 features) | R² = 0.9040 (fusion actually hurts LSTM) | - |
 
