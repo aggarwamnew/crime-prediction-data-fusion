@@ -41,8 +41,7 @@ if not ZIP.exists():
     print(f"   saved {ZIP.stat().st_size/1e6:.0f} MB")
 
 z = zipfile.ZipFile(ZIP)
-name = [n for n in z.namelist() if n.lower().endswith(".csv") and "data" not in n.lower() or n.lower().endswith(".csv")][0]
-csvs = [n for n in z.namelist() if n.lower().endswith(".csv")]
+csvs = [n for n in z.namelist() if "data_BritishColumbia" in n and n.lower().endswith(".csv")]
 print(f"   archive members: {z.namelist()[:5]} ... using {csvs}")
 
 TARGETS = {
@@ -76,7 +75,6 @@ for csv_name in csvs:
             ch = ch[ch["char"].isin(TARGETS)]
             if len(ch):
                 parts.append(ch)
-    break  # first (data) csv only
 
 df = pd.concat(parts, ignore_index=True)
 df["val"] = pd.to_numeric(df["val"], errors="coerce")
