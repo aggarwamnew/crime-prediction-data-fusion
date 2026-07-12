@@ -1,6 +1,6 @@
 # Experiment Index
 
-Complete index of experiments in this study. London scripts are in `notebooks/eda/` (01-32) and `notebooks/experimental/` (DL-01, DL-02); the cross-city replications are in `notebooks/chicago/` and `notebooks/vancouver/`.
+Complete index of experiments in this study. London scripts are in `notebooks/eda/` (01-35) and `notebooks/experimental/` (DL-01, DL-02); the cross-city replications are in `notebooks/chicago/` and `notebooks/vancouver/`.
 
 ## Execution Order
 
@@ -40,9 +40,12 @@ Scripts should be run sequentially. Scripts 01-02 prepare the data; script 03 es
 | 27 | `27_r2_by_crime_level.py` | R² stratified by crime level | R² varies 0.11-0.93; MASE stable at 0.81 | - |
 | 28 | `28_error_analysis_map.py` | Spatial error analysis | Error is volume-driven, not geographic | - |
 | 29 | `29_ptal_fusion.py` | PTAL transport fusion | Delta R² = +0.0003 (static accessibility) | Yes |
-| 30 | `30_station_footfall_fusion.py` | Station footfall fusion | Weapons +0.1371 (largest in entire study) | Yes |
-| 31 | `31_santander_fusion.py` | Santander Cycles fusion | Delta R² = +0.0001 | Yes |
+| 30 | `30_station_footfall_fusion.py` | Station footfall fusion | Per-type join had target leakage; corrected by script 35 (weapons ~0) | Yes |
+| 31 | `31_santander_fusion.py` | Santander Cycles fusion | Delta R² = +0.0001; per-type see script 35 | Yes |
 | 32 | `32_concentric_radius.py` | Concentric radius diagnostic | Double ceiling effect confirmed | - |
+| 33 | `33_bootstrap_ci.py` | Cluster-bootstrap 95% CIs for headline results | Aggregate lifts tiny but real; per-type robust | - |
+| 34 | `34_static_only_model.py` | Supplementary-only models (no crime history) | IMD alone R2 = 0.905 vs 0.935 with history | - |
+| 35 | `35_transport_join_audit.py` | Leaky vs corrected transport join audit | Weapons +0.1371 -> +0.003 (n.s.); only drugs keeps a small robust lift | - |
 | DL-01 | `experimental/01_lstm_baseline.py` | LSTM baseline (11 features) | R² = 0.9075 (RF wins by +0.035) | - |
 | DL-02 | `experimental/02_lstm_full_fusion.py` | LSTM full fusion (51 features) | R² = 0.9040 (fusion actually hurts LSTM) | - |
 

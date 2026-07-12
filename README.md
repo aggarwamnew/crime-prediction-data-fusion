@@ -20,7 +20,7 @@ This repository contains the complete experiment code for an MSc thesis investig
 | **Baseline** | Crime history alone achieves R² = 0.943 (Random Forest, 11 features) |
 | **Aggregate ceiling** | 13 supplementary data layers produce a combined lift of only +0.002 |
 | **Noise floor** | Model error is statistically indistinguishable from the theoretical Poisson limit for 90% of neighbourhoods |
-| **Per-type signal** | Station footfall lifts weapons prediction by +0.1371, the largest single improvement in the study |
+| **Per-type signal** | Points of interest lift weapons prediction by +0.049 (bootstrap 95% CI [+0.013, +0.080]), the largest robust single improvement in the study |
 | **Algorithm-independent** | Random Forest, XGBoost, and LSTM all agree on the ceiling |
 | **Cross-city** | The ceiling replicates in Chicago (R² = 0.902) and Vancouver (R² = 0.925); full-fusion lift is near-identical to London (+0.0021 vs +0.0020) |
 | **Open vs gated** | Where a richer layer looks "missing" in a city, it is usually gated behind a research agreement (police records, PopData BC, transit tap data), not absent |
@@ -127,7 +127,7 @@ See [`EXPERIMENTS.md`](EXPERIMENTS.md) for the full experiment index, and [`note
 
 | Crime Type | Best Data Layer | Delta R² | Mechanism |
 |------------|----------------|----------|-----------|
-| Weapons | Station footfall | **+0.1371** | Transport hub convergence |
+| Weapons | Points of interest (bus stops) | **+0.049** | Transport hub convergence |
 | Drugs | IMD (deprivation) | +0.020 | Socioeconomic clustering |
 | Bicycle theft | Weather | +0.013 | Warm weather = more cyclists |
 | Theft from person | Temporal activity | +0.014 | Holiday crowds = more targets |
