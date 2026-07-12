@@ -32,10 +32,10 @@ for b, v in zip(bars, bl_vals):
 ax1.grid(axis="y", alpha=0.3)
 
 # ---------------------------------------------------------------- Figure 1b: Delta R2 by layer x city
-layers = ["Deprivation", "Demographics", "Mental\nhealth", "Weather", "POIs", "Full\nfusion"]
-london = [0.0005, 0.0007, 0.0003, 0.0025, 0.0004, 0.0020]
-chicago = [0.0005, -0.0002, 0.0001, 0.0022, 0.0004, 0.0021]
-vancouver = [-0.0001, np.nan, np.nan, -0.0001, -0.0000, -0.0001]  # nan = not available/run
+layers = ["Deprivation", "Demographics", "Mental\nhealth", "Weather", "POIs", "Education", "Household", "Housing", "Temporal", "Full\nfusion"]
+london = [0.0005, 0.0007, 0.0003, 0.0025, 0.0004, 0.0003, 0.0005, 0.0006, 0.0001, 0.0020]
+chicago = [0.0005, -0.0002, 0.0001, 0.0022, 0.0004, 0.0005, 0.0003, 0.0002, 0.0008, 0.0021]
+vancouver = [-0.0001, 0.0001, np.nan, -0.0001, -0.0000, np.nan, np.nan, -0.0004, -0.0001, -0.0001]  # nan = not available
 
 x = np.arange(len(layers)); w = 0.27
 ax2.bar(x - w, london, w, label="London", color=CITY_COLORS["London"], alpha=0.9)
