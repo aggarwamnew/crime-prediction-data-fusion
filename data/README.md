@@ -207,3 +207,16 @@ Two Chicago substitutions are documented in the code because the direct analogue
 | PLDR (SAMHI) | Open Government Licence v3.0 |
 | GLA Datastore (PTAL) | Open Government Licence v3.0 |
 | TfL (Footfall, Santander) | TfL Open Data (free, attribution required) |
+
+## Parity-Layer Sources (added at full cross-city parity)
+
+| Layer | City | Source / dataset ID | Access |
+|-------|------|--------------------|--------|
+| Housing | Chicago | Cook County Assessor: values `uzyt-m557` + parcel universe `nj4t-kc8j` (Socrata) | scripted |
+| Housing | Vancouver | CoV `property-tax-report` + `property-parcel-polygons` (Opendatasoft) | scripted |
+| Education / household | Chicago | SVI 2022 columns `EP_NOHSDP`, `EP_SNGPNT` (no new download) | scripted |
+| Age / education / household | Vancouver | StatCan 2021 Census Profile comprehensive DA file (`GEONO=006`) | scripted (2.2 GB) |
+| School terms | Chicago | CPS calendars (verified public announcements, SY2022-23..2025-26) | in-code dates |
+| School terms | Vancouver | VSB compact calendars (incl. archived 2022-23 PDF) | in-code dates |
+| Statutory holidays | both | `holidays` Python library (US/IL, CA/BC) | scripted |
+| Bike-share | Vancouver | Mobi monthly trip files (Google Drive IDs scraped from mobibikes.ca) + CityBikes API geocoding | scripted |
