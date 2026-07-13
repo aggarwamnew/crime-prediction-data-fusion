@@ -76,6 +76,7 @@ Same modelling logic as London (11 features, RF 200/depth-15/leaf-5/seed-42, las
 | 16 | `16_school_terms_fusion.py` | Temporal (CPS terms + US/IL holidays) | Delta R² = +0.0008 |
 | 17 | `17_housing_fusion.py` | Housing (Cook County assessed-value tertiles) | Delta R² = +0.0002 |
 | 18 | `18_per_type_extended.py` | Per-type at full layer parity (edu/hshld/housing/temporal/SS) | Weapons+SchoolTerms +0.094 (tied with weather); Narcotics deprivation reversal extends to edu/hshld |
+| 19 | `19_acs_crosscheck.py` | ACS cross-check of the SVI substitution (needs CENSUS_API_KEY) | ACS education +0.0004 vs SVI +0.0005; ACS home value +0.0005 -> substitution validated |
 
 ## Vancouver Replication (`notebooks/vancouver/`)
 
