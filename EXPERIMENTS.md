@@ -47,7 +47,9 @@ Scripts should be run sequentially. Scripts 01-02 prepare the data; script 03 es
 | 34 | `34_static_only_model.py` | Supplementary-only models (no crime history) | IMD alone R2 = 0.905 vs 0.935 with history | - |
 | 35 | `35_transport_join_audit.py` | Leaky vs corrected transport join audit | Weapons +0.1371 -> +0.003 (n.s.); only drugs keeps a small robust lift | - |
 | 36 | `36_uncertainty_decomposition.py` | Pre-fusion epistemic diagnostics vs realised gains | Rule-out valid, rule-in fails (rho ~ 0): gap size does not reveal gap source | - |
-| DL-01 | `experimental/01_lstm_baseline.py` | LSTM baseline (11 features) | R² = 0.9075 (RF wins by +0.035) | - |
+| 37 | `37_uq_deseasonalised.py` | UQ retest with a deseasonalised aleatoric floor | Repair also fails (LON rho +0.01, CHI -0.51): boundary is model-relative | - |
+| 38 | `38_rolling_origin.py` | Rolling-origin backtest across sliding 6-month test windows | Baseline R2 stable [0.918, 0.937]; full-fusion dR2 [-0.0009, +0.0021] across all windows | - |
+| DL-01 | `experimental/01_lstm_baseline.py` | LSTM baseline (11 features) | R² = 0.9075 (RF wins by ~0.028 at baseline) | - |
 | DL-02 | `experimental/02_lstm_full_fusion.py` | LSTM full fusion (51 features) | R² = 0.9040 (fusion actually hurts LSTM) | - |
 
 ## Chicago Replication (`notebooks/chicago/`)
@@ -98,6 +100,7 @@ Same logic on Census dissemination areas. Property crime only at DA level (viole
 | 15 | `15_mobi_fusion.py` | Bike-share (Mobi via Drive + CityBikes geocoding) | Delta R² = +0.0002 |
 | 16 | `16_full_fusion_all.py` | Full fusion, all 30 supplementary features | Delta R² = +0.0000, CI [-0.0027, +0.0019] |
 | 17 | `17_per_type_extended.py` | Per-type at full layer parity (demo/edu/hshld/housing/temporal/Mobi/SS) | B&E commercial responds to nearly every layer; persistence types <= +0.005 |
+| 18 | `18_per_type_skipped.py` | Exploratory retry of the 3 sparse skipped types (relaxed threshold) | Noisy; bicycle theft<->weather +0.034 echoes London |
 
 ## Cross-City Comparison
 
