@@ -88,3 +88,33 @@ if pt_path.exists():
     print(f"saved {f2}")
 else:
     print("per_type_fusion.csv not found; skipping figure 2")
+
+# ---------------------------------------------------------------- Figure 3: Vancouver per-type best layer
+van_path = Path(__file__).resolve().parents[1] / "data/processed/vancouver/per_type_fusion.csv"
+if van_path.exists():
+    vdf = pd.read_csv(van_path, index_col=0)
+    vlayer_cols = [c for c in vdf.columns if c not in ("base_R2", "n_das")]
+    vbest_layer = vdf[vlayer_cols].idxmax(axis=1)
+    vbest_val = vdf[vlayer_cols].max(axis=1)
+    vorder = vbest_val.sort_values(ascending=True).index
+    short = {"Break and Enter Commercial": "B&E Commercial"}
+    vpalette = {"CIMD": "#ef4444", "Weather": "#f59e0b", "POI": "#3b82f6", "Demo": "#84cc16",
+                "Education": "#14b8a6", "Household": "#a3e635", "Housing": "#eab308",
+                "Temporal": "#22c55e", "Mobi": "#ec4899", "SS": "#94a3b8"}
+    fig3, ax = plt.subplots(figsize=(11, 4.2))
+    vcolors = [vpalette.get(vbest_layer[t], "#64748b") for t in vorder]
+    ax.barh(range(len(vorder)), [vbest_val[t] for t in vorder], color=vcolors, alpha=0.9)
+    ax.set_yticks(range(len(vorder)))
+    ax.set_yticklabels([short.get(t, t) for t in vorder], fontsize=10)
+    for i, t in enumerate(vorder):
+        ax.text(vbest_val[t] + 0.0012, i, f"{vbest_layer[t]} ({vbest_val[t]:+.3f})", va="center", fontsize=9)
+    ax.set_xlabel("Best single-layer $\\Delta R^2$ for the crime type")
+    ax.set_title("Vancouver: best supplementary layer per crime type\n(only the sparse commercial type is data-responsive; persistence types stay flat)", loc="left", fontsize=12)
+    ax.grid(axis="x", alpha=0.3)
+    ax.set_xlim(0, max(vbest_val) * 1.28)
+    fig3.tight_layout()
+    f3 = OUT / "03_vancouver_pertype_best_layer.png"
+    fig3.savefig(f3, dpi=150, bbox_inches="tight")
+    print(f"saved {f3}")
+else:
+    print("vancouver per_type_fusion.csv not found; skipping figure 3")
