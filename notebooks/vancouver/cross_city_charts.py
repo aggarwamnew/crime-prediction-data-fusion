@@ -35,7 +35,7 @@ ax1.grid(axis="y", alpha=0.3)
 layers = ["Deprivation", "Demographics", "Mental\nhealth", "Weather", "POIs", "Education", "Household", "Housing", "Temporal", "Bike-\nshare", "Full\nfusion"]
 london = [0.0005, 0.0007, 0.0003, 0.0025, 0.0004, 0.0003, 0.0005, 0.0006, 0.0001, 0.0001, 0.0020]
 chicago = [0.0005, -0.0002, 0.0001, 0.0022, 0.0004, 0.0005, 0.0003, 0.0002, 0.0008, 0.0002, 0.0021]
-vancouver = [-0.0001, 0.0001, np.nan, -0.0001, -0.0000, 0.0005, -0.0006, -0.0004, -0.0003, 0.0002, -0.0001]  # nan = not available
+vancouver = [-0.0001, 0.0001, np.nan, -0.0001, -0.0000, 0.0005, -0.0006, -0.0004, -0.0003, 0.0002, 0.0000]  # nan = not available
 
 x = np.arange(len(layers)); w = 0.27
 ax2.bar(x - w, london, w, label="London", color=CITY_COLORS["London"], alpha=0.9)
@@ -69,7 +69,9 @@ if pt_path.exists():
     order = best_val.sort_values(ascending=True).index
     fig2, ax = plt.subplots(figsize=(11, 7))
     palette = {"SVI": "#ef4444", "Weather": "#f59e0b", "Demo": "#84cc16", "MentHlth": "#06b6d4",
-               "CTA": "#8b5cf6", "Divvy": "#ec4899", "POI": "#3b82f6"}
+               "CTA": "#8b5cf6", "Divvy": "#ec4899", "POI": "#3b82f6",
+               "Education": "#14b8a6", "Household": "#a3e635", "HousBurd": "#fb923c",
+               "Housing": "#eab308", "Temporal": "#22c55e", "SS": "#94a3b8"}
     colors = [palette.get(best_layer[t], "#64748b") for t in order]
     ax.barh(range(len(order)), [best_val[t] for t in order], color=colors, alpha=0.9)
     ax.set_yticks(range(len(order)))

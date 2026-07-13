@@ -67,18 +67,30 @@ range, and its usable crime is property-only (less weather-sensitive than violen
 The headline full-fusion lift is **near-identical** (London +0.0020, Chicago +0.0021) and
 subadditive in both — adding static layers on top of weather + history adds nothing.
 
-## 4. Per-crime-type heterogeneity (Chicago, mirrors London Table 5.6)
+## 4. Per-crime-type heterogeneity (Chicago + Vancouver, mirrors London Table 5.6)
 
-Per-type R² ranges 0.18-0.86 (London 0.11-0.93). Layers concentrate on distinct types:
+Per-type R² ranges 0.18-0.86 (London 0.11-0.93). **Update 2026-07-13: per-type ablations
+extended to the full parity layer set in both cities** (chicago/18, vancouver/17). Layers
+concentrate on distinct types:
 
 | Crime type | Best layer | Δ R² |
 |---|---|---|
-| Weapons violation | Weather | +0.092 |
+| Weapons violation | School terms (temporal) / weather | +0.094 / +0.092 |
 | Robbery | Transit (CTA) | +0.025 |
 | Burglary | POIs | +0.016 |
 | Deceptive practice | POIs / transit | +0.014 |
 | Narcotics | Bike-share / demographics | +0.012 |
 | Criminal damage | Deprivation (SVI) | +0.011 |
+
+Chicago weapons responds near-identically to the school calendar (+0.094) and weather
+(+0.092): two independent proxies of the same summer-seasonal firearm mechanism (temporal
+adds only +0.0008 in aggregate — the sharpest aggregate-masking example in the study).
+Narcotics' deprivation reversal extends to education (−0.003) and household (−0.007).
+
+**Vancouver per-type at parity (10 layers):** persistence types gain ≤+0.005 from ANY
+layer (Other Theft best: Mobi +0.005; Mischief ≈0), while sparse B&E Commercial responds
+to nearly everything: POI +0.053 (CI-backed), demographics +0.040, education +0.036,
+SS +0.033, Mobi +0.027, CIMD +0.021, weather +0.019, school terms +0.016.
 
 Direct London parallels: transit↔convergence crime (London weapons↔bus-stop POIs +0.049;
 Chicago robbery↔CTA +0.025), POIs↔property crime (London burglary↔restaurants; Chicago

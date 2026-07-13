@@ -67,7 +67,13 @@ Same modelling logic as London (11 features, RF 200/depth-15/leaf-5/seed-42, las
 | 09 | `09_cta_fusion.py` | Transit (CTA 'L' station ridership) | +0.0018 (station tracts) |
 | 10 | `10_divvy_fusion.py` | Bike-share (Divvy trips) | Delta R² = +0.0002 |
 | 11 | `11_full_fusion.py` | Full fusion (contextual + SS) | Delta R² = +0.0021 (subadditive) |
-| 12 | `12_per_type.py` | Per-crime-type ablation | Weapons+Weather +0.092; Robbery+Transit +0.025 |
+| 12 | `12_per_type.py` | Per-crime-type ablation (core layers) | Weapons+Weather +0.092; Robbery+Transit +0.025 |
+| 13 | `13_verification.py` | Bootstrap CIs, leak assertion, SVI-only static model | Full fusion CI [+0.0002, +0.0042]; SVI-only R²=0.860 |
+| 14 | `14_uq_decomposition.py` | UQ diagnostics vs realised per-type gains | rule-out fails (rho = -0.46) |
+| 15 | `15_extra_layers_fusion.py` | Education, household, housing burden, holidays | each Delta R² <= +0.0008 |
+| 16 | `16_school_terms_fusion.py` | Temporal (CPS terms + US/IL holidays) | Delta R² = +0.0008 |
+| 17 | `17_housing_fusion.py` | Housing (Cook County assessed-value tertiles) | Delta R² = +0.0002 |
+| 18 | `18_per_type_extended.py` | Per-type at full layer parity (edu/hshld/housing/temporal/SS) | Weapons+SchoolTerms +0.094 (tied with weather); Narcotics deprivation reversal extends to edu/hshld |
 
 ## Vancouver Replication (`notebooks/vancouver/`)
 
@@ -83,6 +89,15 @@ Same logic on Census dissemination areas. Property crime only at DA level (viole
 | 06 | `06_poi_fusion.py` | POIs (OpenStreetMap / Overpass) | Delta R² = -0.0000 |
 | 07 | `07_neighbourhood_allcrime.py` | All-crime at 24 neighbourhoods (incl. violent) | R² = 0.971 |
 | 08 | `08_full_fusion.py` | Full fusion (contextual layers) | static layers negligible |
+| 09 | `09_verification.py` | Bootstrap CIs (all layer intervals span zero), CIMD-only static | CIMD-only R²=0.893 |
+| 10 | `10_extra_layers_fusion.py` | Population density, BC holidays | Delta R² = +0.0001 / -0.0001 |
+| 11 | `11_per_type.py` | Per-crime-type ablation (core layers) | B&E commercial+POI +0.053 |
+| 12 | `12_housing_fusion.py` | Housing (CoV assessed-value tertiles) | Delta R² = -0.0004 |
+| 13 | `13_census_layers_fusion.py` | Census DA age / education / household | Education +0.0005 (matches London/Chicago) |
+| 14 | `14_school_terms_fusion.py` | Temporal (VSB terms + BC holidays) | Delta R² = -0.0003 |
+| 15 | `15_mobi_fusion.py` | Bike-share (Mobi via Drive + CityBikes geocoding) | Delta R² = +0.0002 |
+| 16 | `16_full_fusion_all.py` | Full fusion, all 30 supplementary features | Delta R² = +0.0000, CI [-0.0027, +0.0019] |
+| 17 | `17_per_type_extended.py` | Per-type at full layer parity (demo/edu/hshld/housing/temporal/Mobi/SS) | B&E commercial responds to nearly every layer; persistence types <= +0.005 |
 
 ## Cross-City Comparison
 
